@@ -1,0 +1,60 @@
+﻿@model IEnumerable<IMusic.Models.SongModel>
+
+<h1>@ViewData["Title"]</h1> <!-- Display title -->
+<ul>
+    @if (Model != null && Model.Any()) // Check if the model is not null or empty
+    {
+        foreach (var song in Model) // Iterate through each song
+        {
+            <li>
+                @song.sSongName - @song.Genre?.sGenre <!-- Safely access Genre -->
+                <button class="play-button" onclick="playSong('@song.sSongPath', '@song.sSongName', '@song.Genre?.sGenre')">Play</button>
+            </li>
+        }
+    }
+    else
+    {
+        <li>No songs available.</li>
+ <!-- Handle case with no songs -->
+    }
+</ul>
+
+<!-- Song Player Control Bar -->
+<div id="song-player" class="song-player">
+    <div class="player-info">
+        <div id="current-song-name" class="song-name"></div>
+        <div id="current-song-genre" class="song-genre"></div>
+    </div>
+    <audio id="audio-player" controls class="audio-player">
+        <source id="audio-source" src="" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>let currentAudio = null; // Store the currently playing audio element
+
+    function playSong(songPath, songName, songGenre) {
+        // Get the audio player and source elements
+        const audioPlayer = document.getElementById('audio-player');
+        const audioSource = document.getElementById('audio-source');
+        const songPlayerBar = document.getElementById('song-player');
+        const currentSongName = document.getElementById('current-song-name');
+        const currentSongGenre = document.getElementById('current-song-genre');
+
+        // If there is already an audio playing, pause it
+        if (currentAudio && !currentAudio.paused) {
+            currentAudio.pause();
+        }
+
+        // Update the audio source and play the new song
+        audioSource.src = songPath;
+        audioPlayer.load(); // Load the new song
+        audioPlayer.play(); // Start playing
+
+        // Set the new current audio
+        currentAudio = audioPlayer;
+
+        // Update the song name and genre, and show the player bar
+        currentSongName.textContent = songName;
+        currentSongGenre.textContent = songGenre || "Unknown Genre"; // Fallback if no genre
+        songPlayerBar.style.display = 'flex';
+    }</script>

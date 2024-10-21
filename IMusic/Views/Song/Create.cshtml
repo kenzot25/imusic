@@ -1,0 +1,46 @@
+﻿@model IMusic.Models.SongModel
+
+@{
+    ViewData["Title"] = "Upload Song";
+}
+
+<h2 class="page-title">Upload Song</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.Error
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="form-container">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="upload-form">
+        <div class="mb-4">
+            <label asp-for="sSongName" class="form-label">Song Name</label>
+            <input asp-for="sSongName" class="form-control form-control-lg" placeholder="Enter song name" />
+            <span asp-validation-for="sSongName" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="FK_sGenreId" class="form-label">Genre</label>
+            <select asp-for="FK_sGenreId" class="form-select form-select-lg" asp-items="@(new SelectList(ViewBag.Genres, "PK_sGenreId", "sGenre"))">
+                <option value="">Select Genre</option>
+            </select>
+            <span asp-validation-for="FK_sGenreId" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label for="file" class="form-label">Upload File</label>
+            <input type="file" name="file" accept="audio/*" required class="form-control form-control-lg" />
+            <span asp-validation-for="sSongPath" class="text-danger"></span>
+        </div>
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-primary btn-lg upload-btn">Upload</button>
+            <a asp-action="Index" class="btn btn-secondary btn-lg">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

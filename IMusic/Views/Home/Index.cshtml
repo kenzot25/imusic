@@ -2,8 +2,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-3">Discover Your Sound</h1>
+        <p class="lead">Stream millions of songs, albums, and playlists from your favorite artists.</p>
+        <a href="/Song" class="btn btn-primary btn-lg">Start Listening</a>
+    </div>
 </div>
 
+<div class="content-section">
+    <div class="container">
+        <h2 class="section-title">Featured Playlists</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="playlist-card">
+                    <img src="~/images/playlist1.jpg" class="playlist-image" alt="Playlist 1">
+                    <div class="playlist-info">
+                        <h4>Top Hits</h4>
+                        <p>Listen to the best tracks of 2024.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="playlist-card">
+                    <img src="~/images/playlist2.jpg" class="playlist-image" alt="Playlist 2">
+                    <div class="playlist-info">
+                        <h4>Relax & Unwind</h4>
+                        <p>Chill out with smooth and relaxing tunes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="playlist-card">
+                    <img src="~/images/playlist3.jpg" class="playlist-image" alt="Playlist 3">
+                    <div class="playlist-info">
+                        <h4>Workout Beats</h4>
+                        <p>Get motivated with high-energy tracks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
