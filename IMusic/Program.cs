@@ -24,7 +24,7 @@ var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_S
 //var firebaseAuthPassword = Environment.GetEnvironmentVariable("FIREBASE_AUTH_PASSWORD");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
