@@ -21,8 +21,17 @@ public class HomeController : Controller
     {
         // Fetch songs and trends for the homepage
         var songs = await _songRepository.GetAllSongsAsync();
-        var topSongs = songs.OrderByDescending(s => s.iListened).Take(10).ToList();
-        var latestTrends = songs.OrderByDescending(s => s.dUploadDate).Take(5).ToList();
+
+        // Comment this if there are no songs yet
+        if (songs == null || !songs.Any())
+        {
+            // Optional: return a placeholder view or message when there are no songs
+            ViewBag.Message = "No songs available yet!";
+            return View(new HomeViewModel());
+        }
+
+        var topSongs = songs.OrderByDescending(s => s.iListened).Take(6).ToList();
+        var latestTrends = songs.OrderByDescending(s => s.dUploadDate).Take(2).ToList();
 
         var viewModel = new HomeViewModel
         {
@@ -32,4 +41,5 @@ public class HomeController : Controller
 
         return View(viewModel);
     }
+
 }

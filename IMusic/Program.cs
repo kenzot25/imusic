@@ -63,6 +63,7 @@ builder.Services.AddSingleton(new FirebaseStorageService(
         Environment.GetEnvironmentVariable("FIREBASE_AUTH_EMAIL"),
         Environment.GetEnvironmentVariable("FIREBASE_AUTH_PASSWORD")
     ));
+builder.WebHost.UseStaticWebAssets();
 
 var app = builder.Build();
 
@@ -81,7 +82,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

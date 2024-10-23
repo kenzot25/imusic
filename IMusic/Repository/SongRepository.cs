@@ -16,7 +16,7 @@ namespace IMusic.Repositories
 
         public async Task<List<SongModel>> GetAllSongsAsync()
         {
-            return await _context.Songs.Include(s => s.Genre).ToListAsync();
+            return await _context.Songs.Include(s => s.User).Include(s => s.Genre).ToListAsync();
         }
 
         public async Task AddSongAsync(SongModel song)

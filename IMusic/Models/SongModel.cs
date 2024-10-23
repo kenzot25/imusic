@@ -27,6 +27,9 @@ namespace IMusic.Models
         // Navigation Property
         public virtual GenreModel? Genre { get; set; }
 
+        // Navigation Property
+        public virtual UserModel? User { get; set; }
+
         public SongModel()
 		{
 		}

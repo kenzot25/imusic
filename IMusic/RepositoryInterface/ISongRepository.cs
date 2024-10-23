@@ -6,7 +6,7 @@ namespace IMusic.Repositories
 {
     public interface ISongRepository
     {
-        Task<List<SongModel>> GetAllSongsAsync();
+        Task<List<SongModel>> GetAllSongsAsync() ;
         Task AddSongAsync(SongModel song);
         Task<List<GenreModel>> GetGenresAsync();
     }

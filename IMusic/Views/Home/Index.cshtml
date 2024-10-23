@@ -1,46 +1,139 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IMusic.Models.ViewModels.HomeViewModel
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="hero-section">
-    <div class="container text-center">
-        <h1 class="display-3">Discover Your Sound</h1>
-        <p class="lead">Stream millions of songs, albums, and playlists from your favorite artists.</p>
-        <a href="/Song" class="btn btn-primary btn-lg">Start Listening</a>
-    </div>
-</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="~/css/home/main.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/font.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/home/animation.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/home/responsive.css" asp-append-version="true" />
+  <title>Listening is everything - IMusic</title>
+  <link rel="icon" href="https://www.scdn.co/i/_global/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
 
-<div class="content-section">
-    <div class="container">
-        <h2 class="section-title">Featured Playlists</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="playlist-card">
-                    <img src="~/images/playlist1.jpg" class="playlist-image" alt="Playlist 1">
-                    <div class="playlist-info">
-                        <h4>Top Hits</h4>
-                        <p>Listen to the best tracks of 2024.</p>
-                    </div>
-                </div>
+<body>
+  <div class="home_main">
+    <div class="hm_gradient-1"></div>
+    <div class="hm_gradient-2"></div>
+    <div class="container hm_cont">
+      <span class="home_text">
+        <h1>Top Songs</h1>
+        <h3>Pick up your music right where you left off..</h3>
+        <a class="green_btn" role="button" href="/Song">Play music</a>
+      </span>
+      <span class="home_cards">
+        @if (Model.TopSongs != null && Model.TopSongs.Count > 0)
+        {
+        var index = 1;
+        foreach (var song in Model.TopSongs)
+        {
+        // Add dynamic delay classes based on index
+        var delayClass = $"opacity_anim opacity_anim-{index}d";
+
+        <div class="hm_card @delayClass">
+          <div class="box">
+            <img src="@song.sImageUrl" alt="@song.sSongName" />
+          </div>
+          <div class="box_details">
+            <div class="play-icon">
+              <a href="/Song/Details/@song.PK_sSongId">
+                <svg id="album-play" viewBox="0 0 25.4 25.4">
+                  <path fill="#ffffff" d="M12.7,25.4A12.7,12.7,0,1,1,25.4,12.7,12.71,12.71,0,0,1,12.7,25.4Zm0-24A11.3,11.3,0,1,0,24,12.7,11.31,11.31,0,0,0,12.7,1.4Z"></path>
+                  <path fill="#ffffff" d="M11,16.47,17,13a.34.34,0,0,0,0-.59L11,8.93a.34.34,0,0,0-.51.29v7A.34.34,0,0,0,11,16.47Z"></path>
+                </svg>
+              </a>
             </div>
-            <div class="col-md-4">
-                <div class="playlist-card">
-                    <img src="~/images/playlist2.jpg" class="playlist-image" alt="Playlist 2">
-                    <div class="playlist-info">
-                        <h4>Relax & Unwind</h4>
-                        <p>Chill out with smooth and relaxing tunes.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="playlist-card">
-                    <img src="~/images/playlist3.jpg" class="playlist-image" alt="Playlist 3">
-                    <div class="playlist-info">
-                        <h4>Workout Beats</h4>
-                        <p>Get motivated with high-energy tracks.</p>
-                    </div>
-                </div>
-            </div>
+            <h2>@song.sSongName</h2>
+            <p>By @song.User?.sHoTen</p>
+          </div>
         </div>
+
+        // Increment index for the next song's delay
+        index++;
+        }
+        }
+        else
+        {
+        <p>No songs available to display.</p>
+        }
+      </span>
     </div>
-</div>
+    <div class="container">
+      <div class="arrow-scroll-down slide-top">
+        <a href="#last_listen">
+          <svg id="arrow-scroll-down" viewBox="0 0 32 32">
+            <polygon fill="#ffffff" points="15.98 22.43 7.28 13.73 8.7 12.32 15.98 19.6 23.28 12.3 24.7 13.72 15.98 22.43"></polygon>
+            <path fill="#ffffff" d="M16,32A16,16,0,1,1,32,16,16,16,0,0,1,16,32ZM16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div id="last_listen" class="last_listen">
+      <div class="container">
+        <h1 class="position-relative">Your Latest Listening Trends</h1>
+        <div class="ll_row">
+          @if (Model.LatestTrends != null && Model.LatestTrends.Count > 0)
+          {
+          <span>
+            <div class="ll_card">
+              <span class="txt">
+                <h5>MOST LISTENED ARTIST</h5>
+                <h2>@Model.TopSongs.FirstOrDefault()?.sSongName</h2>
+                <a href="/Song/Details/@Model.TopSongs.FirstOrDefault()?.PK_sSongId">PLAY NOW</a>
+              </span>
+              <span class="img">
+                <img src="@Model.TopSongs.FirstOrDefault()?.sImageUrl" alt="@Model.TopSongs.FirstOrDefault()?.sSongName">
+              </span>
+              <span class="bg_filt"></span>
+            </div>
+          </span>
+          <span>
+            <div class="ll_card">
+              <span class="txt">
+                <h5>Trending New</h5>
+                <h2>@Model.LatestTrends.FirstOrDefault()?.sSongName</h2>
+                <a href="/Song/Details/@Model.LatestTrends.FirstOrDefault()?.PK_sSongId">PLAY NOW</a>
+              </span>
+              <span class="img">
+                <img src="@Model.LatestTrends.FirstOrDefault()?.sImageUrl" alt="@Model.LatestTrends.FirstOrDefault()?.sSongName">
+              </span>
+              <span class="bg_filt"></span>
+            </div>
+          </span>
+          }
+          else
+          {
+          <p>No recent trends available.</p>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="home_links position-relative">
+      <div class="container">
+        <h1 class="title-1">Get the most from IMusic</h1>
+      </div>
+      <div class="container links">
+        <div class="account_link">
+          <h3 class="subtitle-1">Manage your account</h3>
+          <p class="parag-1">Edit your profile, change your password and update your payment informations.</p>
+          <a class="a_link" href="">MANAGE ACCOUNT</a>
+        </div>
+        <div class="app_link">
+          <h3 class="subtitle-1">Get our free app</h3>
+          <p class="parag-1">Listen to your favorite music without any problems. Download the IMusic app to your computer.</p>
+          <a class="a_link" href="">DOWNLOAD DESKTOP APP</a>
+        </div>
+        <div class="web_link">
+          <h3 class="subtitle-1">Listen on the web</h3>
+          <p class="parag-1">To play and share music inside the browser without the app <a class="a_link" href="">play.IMusic.com</a> Go to.</p>
+          <a class="a_link" href="https://IMusic-clone-oguz3.web.app/">play music</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

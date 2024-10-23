@@ -25,6 +25,8 @@
     <Folder Include="Views\Song\" />
     <Folder Include="Repository\" />
     <Folder Include="Services\" />
+    <Folder Include="wwwroot\css\home\" />
+    <Folder Include="wwwroot\Assets\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
@@ -41,5 +43,63 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\css\home\" />
+    <Content Remove="wwwroot\Assets\all-devices.svg" />
+    <Content Remove="wwwroot\Assets\appstore.webp" />
+    <Content Remove="wwwroot\Assets\b1.jfif" />
+    <Content Remove="wwwroot\Assets\b2.png" />
+    <Content Remove="wwwroot\Assets\b3.jpg" />
+    <Content Remove="wwwroot\Assets\b4.jfif" />
+    <Content Remove="wwwroot\Assets\b5.jfif" />
+    <Content Remove="wwwroot\Assets\b6.jpg" />
+    <Content Remove="wwwroot\Assets\b7.webp" />
+    <Content Remove="wwwroot\Assets\b8.jfif" />
+    <Content Remove="wwwroot\Assets\b9.jpg" />
+    <Content Remove="wwwroot\Assets\benefit_1.png" />
+    <Content Remove="wwwroot\Assets\Benefit_2.png" />
+    <Content Remove="wwwroot\Assets\benefit_3.png" />
+    <Content Remove="wwwroot\Assets\benefit_4.png" />
+    <Content Remove="wwwroot\Assets\CircularStd-Black.otf" />
+    <Content Remove="wwwroot\Assets\face.svg" />
+    <Content Remove="wwwroot\Assets\googleplay.webp" />
+    <Content Remove="wwwroot\Assets\in.svg" />
+    <Content Remove="wwwroot\Assets\insta.svg" />
+    <Content Remove="wwwroot\Assets\laptop.webp" />
+    <Content Remove="wwwroot\Assets\microsoft.webp" />
+    <Content Remove="wwwroot\Assets\search-desktop.webp" />
+    <Content Remove="wwwroot\Assets\search-mobile.webp" />
+    <Content Remove="wwwroot\Assets\searchIcon.svg" />
+    <Content Remove="wwwroot\Assets\Spotify.svg" />
+    <Content Remove="wwwroot\Assets\twitter.svg" />
+    <Content Remove="wwwroot\Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Assets\all-devices.svg" />
+    <None Include="wwwroot\Assets\appstore.webp" />
+    <None Include="wwwroot\Assets\b1.jfif" />
+    <None Include="wwwroot\Assets\b2.png" />
+    <None Include="wwwroot\Assets\b3.jpg" />
+    <None Include="wwwroot\Assets\b4.jfif" />
+    <None Include="wwwroot\Assets\b5.jfif" />
+    <None Include="wwwroot\Assets\b6.jpg" />
+    <None Include="wwwroot\Assets\b7.webp" />
+    <None Include="wwwroot\Assets\b8.jfif" />
+    <None Include="wwwroot\Assets\b9.jpg" />
+    <None Include="wwwroot\Assets\benefit_1.png" />
+    <None Include="wwwroot\Assets\Benefit_2.png" />
+    <None Include="wwwroot\Assets\benefit_3.png" />
+    <None Include="wwwroot\Assets\benefit_4.png" />
+    <None Include="wwwroot\Assets\CircularStd-Black.otf" />
+    <None Include="wwwroot\Assets\face.svg" />
+    <None Include="wwwroot\Assets\googleplay.webp" />
+    <None Include="wwwroot\Assets\in.svg" />
+    <None Include="wwwroot\Assets\insta.svg" />
+    <None Include="wwwroot\Assets\laptop.webp" />
+    <None Include="wwwroot\Assets\microsoft.webp" />
+    <None Include="wwwroot\Assets\search-desktop.webp" />
+    <None Include="wwwroot\Assets\search-mobile.webp" />
+    <None Include="wwwroot\Assets\searchIcon.svg" />
+    <None Include="wwwroot\Assets\Spotify.svg" />
+    <None Include="wwwroot\Assets\twitter.svg" />
   </ItemGroup>
 </Project>
