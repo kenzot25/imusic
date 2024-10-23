@@ -4,22 +4,22 @@
 
 namespace IMusic.Migrations
 {
-    public partial class addimagetosong : Migration
+    public partial class updatesong : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "sImageUrl",
+            migrationBuilder.RenameColumn(
+                name: "ImageUrl",
                 table: "tbl_Song",
-                type: "text",
-                nullable: true);
+                newName: "sImageUrl");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
+            migrationBuilder.RenameColumn(
                 name: "sImageUrl",
-                table: "tbl_Song");
+                table: "tbl_Song",
+                newName: "ImageUrl");
         }
     }
 }
