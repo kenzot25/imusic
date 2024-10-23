@@ -21,6 +21,9 @@ namespace IMusic.Models
         public DateTime dUploadDate { get; set; }
         public int? iListened { get; set; }
         public string? FK_sPlaylistId { get; set; }
+
+        public string? sImageUrl { get; set; }
+
         // Navigation Property
         public virtual GenreModel? Genre { get; set; }
 

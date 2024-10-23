@@ -16,6 +16,13 @@ namespace IMusic.Models
             public string Password { get; set; }
             public bool RememberMe { get; set; }
         }
+
+        public class HomeViewModel
+        {
+            public List<SongModel> TopSongs { get; set; }
+            public List<SongModel> LatestTrends { get; set; }
+        }
+
     }
 }
 
