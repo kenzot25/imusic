@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IMusic.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241023172840_add-navigation-song-user")]
+    partial class addnavigationsonguser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,10 +47,6 @@ namespace IMusic.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("sGenre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("sImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -87,10 +85,6 @@ namespace IMusic.Migrations
                     b.Property<DateTime>("dCreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("sImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("sPlaylistName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -109,7 +103,7 @@ namespace IMusic.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FK_sPlaylistId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FK_sUserId")
                         .HasColumnType("nvarchar(450)");
@@ -133,8 +127,6 @@ namespace IMusic.Migrations
                     b.HasKey("PK_sSongId");
 
                     b.HasIndex("FK_sGenreId");
-
-                    b.HasIndex("FK_sPlaylistId");
 
                     b.HasIndex("FK_sUserId");
 
@@ -358,17 +350,11 @@ namespace IMusic.Migrations
                         .WithMany()
                         .HasForeignKey("FK_sGenreId");
 
-                    b.HasOne("IMusic.Models.PlaylistModel", "Playlist")
-                        .WithMany()
-                        .HasForeignKey("FK_sPlaylistId");
-
                     b.HasOne("IMusic.Models.UserModel", "User")
                         .WithMany()
                         .HasForeignKey("FK_sUserId");
 
                     b.Navigation("Genre");
-
-                    b.Navigation("Playlist");
 
                     b.Navigation("User");
                 });
