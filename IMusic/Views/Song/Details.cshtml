@@ -1,0 +1,115 @@
+﻿@model IMusic.Models.SongModel
+@{
+    ViewData["Title"] = "Song Details";
+    var isInPlaylist = Model.FK_sPlaylistId != null;
+    var currentSongId = Model.PK_sSongId; // Get the current song ID
+}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/song-detail/main.css" asp-append-version="true" />
+    <title>Listening is everything - IMusic</title>
+    <link rel="icon" href="https://www.scdn.co/i/_global/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<div class="song-details-page">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        @if (isInPlaylist)
+        {
+            <!-- Display Playlist Info -->
+            <div class="playlist-info">
+                <img src="@Model.Playlist.sImageUrl" alt="@Model.Playlist.sPlaylistName" class="playlist-banner" />
+                <div class="playlist-details">
+                    <h2>@Model.Playlist.sPlaylistName</h2>
+                    <button class="btn btn-play">Play Playlist</button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Display Genre Info -->
+            <div class="genre-info">
+                <img src="@Model.Genre.sImageUrl" alt="@Model.Genre.sGenre" class="playlist-banner" />
+                <div class="playlist-details">
+                    <h2>@Model.Genre.sGenre</h2>
+                    <button class="btn btn-play">Play @Model.Genre.sGenre</button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Related Songs Section -->
+    <div class="related-songs">
+        <h3>Related Songs</h3>
+        <ul class="song-list">
+            @foreach (var song in ViewBag.RelatedSongs)
+            {
+                <li class="song-item">
+                    <div class="song-thumbnail">
+                        <img src="@song.sImageUrl" alt="@song.sSongName" />
+                    </div>
+                    <div class="song-info">
+                        <h4>@song.sSongName</h4>
+                        <p>@song.User.sHoTen</p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="fixed-track-bar">
+        <img src="@Model.sImageUrl" alt="@Model.sSongName" class="track-image" />
+        <div class="track-details">
+            <h4 id="track-title">@Model.sSongName</h4>
+            <p id="track-author">@Model.User.sHoTen</p>
+            @*<div class="track-controls">
+                <button class="btn btn-prev">Prev</button>
+                <button class="btn btn-play-pause">Play/Pause</button>
+                <button class="btn btn-next">Next</button>
+            </div>*@
+            <div class="trackbar-container">
+                <input type="range" id="song-progress" min="0" max="100" value="0" class="trackbar">
+            </div>
+        </div>
+        <audio id="mainSongPlayer" controls autoplay>
+            <source src="@Model.sSongPath" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var mainSongPlayer = document.getElementById('mainSongPlayer');
+        var songProgress = document.getElementById('song-progress');
+        var prevButton = document.querySelector('.btn-prev');
+        var nextButton = document.querySelector('.btn-next');
+        var playPauseButton = document.querySelector('.btn-play-pause');
+
+        // Auto-play the main song when the page loads
+        mainSongPlayer.play();
+
+        // Trackbar functionality
+        songProgress.addEventListener('input', function () {
+            mainSongPlayer.currentTime = (mainSongPlayer.duration / 100) * songProgress.value;
+        });
+
+        mainSongPlayer.addEventListener('timeupdate', function () {
+            songProgress.value = (mainSongPlayer.currentTime / mainSongPlayer.duration) * 100;
+        });
+
+        // Play/pause button functionality
+        playPauseButton.addEventListener('click', function () {
+            if (mainSongPlayer.paused) {
+                mainSongPlayer.play();
+                playPauseButton.textContent = "Pause";
+            } else {
+                mainSongPlayer.pause();
+                playPauseButton.textContent = "Play";
+            }
+        });
+    </script>
+}

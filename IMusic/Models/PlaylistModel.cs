@@ -13,7 +13,7 @@ namespace IMusic.Models
         [ForeignKey("User")]
         public string FK_sUserId { get; set; }
         public DateTime dCreatedDate { get; set; }
-
+        public string sImageUrl { get; set; }
         public PlaylistModel()
 		{
 		}

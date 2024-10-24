@@ -8,6 +8,7 @@ namespace IMusic.Models
         [Key]
         public string PK_sGenreId { get; set; }
         public string sGenre { get; set; }
+        public string sImageUrl { get; set; }
 
         public GenreModel()
 		{

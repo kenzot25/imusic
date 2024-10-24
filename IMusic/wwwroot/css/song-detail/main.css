@@ -1,0 +1,124 @@
+﻿
+.song-details-page {
+    background-color: #121212;
+    color: #fff;
+    padding-bottom: 250px;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), #121212);
+    max-width: 60%;
+    margin: auto;
+}
+
+.playlist-info, .genre-info {
+    display: flex;
+    align-items: center;
+}
+
+.playlist-banner, .song-image {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+}
+
+.playlist-details {
+    max-width: 60%;
+}
+
+    .playlist-details h2 {
+        text-align: left;
+        color: white;
+        font-size: 60px;
+        font-weight: bold;
+    }
+
+.btn-play {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1db954;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.related-songs {
+    margin-top: 50px;
+    max-width: 60%;
+    margin: auto;
+}
+
+.song-list {
+    display: block;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.song-thumbnail img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.song-info {
+    flex-grow: 1;
+}
+
+.btn-play-song {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.fixed-track-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #282828;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-song-info {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.track-image {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+    position: absolute;
+    top: -200px;
+    left: 0;
+}
+
+.track-details {
+    width: 40%;
+}
+
+.btn-download {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+audio {
+   display:none;
+
+}
+

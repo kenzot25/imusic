@@ -98,51 +98,6 @@
         row-gap: 15px;
     }
 
-    footer {
-        padding: 50px 0 20px;
-    }
-
-    .footer-cont {
-        display: grid;
-        width: 100%;
-        grid-template-columns: 100%;
-        grid-template-rows: 55px 336px 80px auto auto;
-        grid-template-areas:
-            'logo'
-            'footer-nav'
-            'social'
-            'tr'
-            'footer_bot';
-    }
-
-    footer .social ul {
-        margin-left: 0;
-    }
-
-    footer .logo svg {
-        max-width: 89px;
-        height: 28px;
-    }
-
-    .footer-nav .fn-left, .footer-nav .fn-mid, .footer-nav .fn-right {
-        padding: 0;
-    }
-
-    footer .social ul li a {
-        width: 44px;
-        height: 44px;
-    }
-
-    .why-cards {
-        grid-template-columns: 1fr 1fr;
-        row-gap: 50px;
-        margin-top: 62px;
-    }
-
-    .plans-container {
-        grid-template-columns: 1fr 1fr;
-        row-gap: 225px;
-    }
 
     .top-solution {
         grid-template-columns: 1fr;
@@ -158,15 +113,6 @@
         grid-template-columns: 1fr;
     }
 
-    .Help-links {
-        background-color: rgb(255, 255, 255);
-        padding: 0px;
-    }
-
-        .Help-links .container {
-            padding: 0;
-            max-width: 100%;
-        }
 
     .link_box {
         position: relative;
@@ -209,32 +155,7 @@
             content: none;
         }
 
-    .download {
-        padding: 40px 15px 40px;
-    }
-
-        .download img {
-            margin-top: 14px;
-        }
-
-    .visitCommunity {
-        padding: 60px 0px;
-    }
-
-        .visitCommunity h1 {
-            font-size: 32px;
-            line-height: 40px;
-        }
-
-    .Search {
-        padding: 0;
-    }
-
-        .Search h1 {
-            padding: 32px 0 32px;
-            font-size: 44px;
-            line-height: 52px;
-        }
+  
 
     .home_cards {
         grid-template-columns: 1fr 1fr;
@@ -249,45 +170,23 @@
         grid-template-columns: 1fr;
     }
 
-    .premium-head h1 {
-        font-size: 48px;
-    }
+  
 
     .title-2 {
         font-size: 24px;
     }
 
-    .premium-head .black_btn {
-        width: 100%;
-        text-align: center;
-    }
 
     .title-1 {
         font-size: 32px;
     }
 
-    .why-cards {
-        grid-template-columns: 1fr;
-        row-gap: 50px;
-    }
-
-    .plans-text h2 {
-        font-size: 32px;
-    }
-
-    .plans-container {
-        grid-template-columns: 1fr;
-        row-gap: 225px;
-    }
+  
 
     header {
         background-color: var(--black) !important;
     }
 
-    .searchInputBox {
-        position: relative;
-        width: auto;
-    }
 }
 
 @media screen and (max-width: 576px) {
@@ -314,19 +213,6 @@
         font-size: 20px;
     }
 
-    .why-premium {
-        padding: 35px 0px 50px 0px;
-    }
-
-    .plans-container {
-        grid-template-columns: 1fr;
-        row-gap: 200px;
-    }
-
-    .premium-head {
-        padding-top: 50px;
-    }
-
     .home_text {
         padding-left: 0px;
         padding-right: 0px;
@@ -341,7 +227,7 @@
         text-align: center;
     }
 
-    .green_btn {
+    .orange_btn {
         margin-top: 20px;
         font-size: 14px;
         padding: 16px 42px;
@@ -415,37 +301,3 @@
             padding: 8px 40px;
             font-size: 18px;
         }
-
-    .footer-cont {
-        display: grid;
-        width: 100%;
-        grid-template-columns: 100%;
-        grid-template-rows: 55px 720px 80px 29px auto;
-        grid-template-areas:
-            'logo'
-            'footer-nav'
-            'social'
-            'tr'
-            'footer_bot';
-    }
-
-    footer .footer-nav {
-        grid-template-columns: 1fr;
-    }
-
-    footer .footer_bot {
-        display: block;
-    }
-
-        footer .footer_bot ul {
-            margin: 0;
-        }
-
-            footer .footer_bot ul li a {
-                padding: .3em 0;
-            }
-
-        footer .footer_bot span {
-            display: block;
-        }
-}

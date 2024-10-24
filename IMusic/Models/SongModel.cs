@@ -20,6 +20,8 @@ namespace IMusic.Models
         public string? FK_sUserId { get; set; }
         public DateTime dUploadDate { get; set; }
         public int? iListened { get; set; }
+
+        [ForeignKey("Playlist")]
         public string? FK_sPlaylistId { get; set; }
 
         public string? sImageUrl { get; set; }
@@ -29,6 +31,9 @@ namespace IMusic.Models
 
         // Navigation Property
         public virtual UserModel? User { get; set; }
+
+        // Navigation Property
+        public virtual PlaylistModel? Playlist { get; set; }
 
         public SongModel()
 		{

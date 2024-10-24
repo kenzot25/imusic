@@ -5,12 +5,12 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    padding-top:70px;
+    padding-top:80px;
 }
 
 /* Header */
 header .navbar {
-    background-color: #1db954; /* Spotify-like green */
+    background-color: #1db954;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

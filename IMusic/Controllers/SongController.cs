@@ -99,5 +99,24 @@ namespace IMusic.Controllers
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            var song = await _songRepository.GetSongByIdAsync(id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.RelatedSongs = _songRepository.GetRelatedSongsByGenre(song.FK_sGenreId, song.PK_sSongId);
+
+            return View(song);
+        }
+
     }
 }

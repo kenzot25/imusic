@@ -22,7 +22,7 @@
       <span class="home_text">
         <h1>Top Songs</h1>
         <h3>Pick up your music right where you left off..</h3>
-        <a class="green_btn" role="button" href="/Song">Play music</a>
+        <a class="orange_btn" role="button" href="/Song">Play music</a>
       </span>
       <span class="home_cards">
         @if (Model.TopSongs != null && Model.TopSongs.Count > 0)
@@ -39,7 +39,7 @@
           </div>
           <div class="box_details">
             <div class="play-icon">
-              <a href="/Song/Details/@song.PK_sSongId">
+              <a href="@Url.Action("Details", "Song", new { id = song.PK_sSongId })">
                 <svg id="album-play" viewBox="0 0 25.4 25.4">
                   <path fill="#ffffff" d="M12.7,25.4A12.7,12.7,0,1,1,25.4,12.7,12.71,12.71,0,0,1,12.7,25.4Zm0-24A11.3,11.3,0,1,0,24,12.7,11.31,11.31,0,0,0,12.7,1.4Z"></path>
                   <path fill="#ffffff" d="M11,16.47,17,13a.34.34,0,0,0,0-.59L11,8.93a.34.34,0,0,0-.51.29v7A.34.34,0,0,0,11,16.47Z"></path>
@@ -77,28 +77,33 @@
         <div class="ll_row">
           @if (Model.LatestTrends != null && Model.LatestTrends.Count > 0)
           {
+          <!-- Most Listened Artist Card -->
           <span>
             <div class="ll_card">
               <span class="txt">
                 <h5>MOST LISTENED ARTIST</h5>
-                <h2>@Model.TopSongs.FirstOrDefault()?.sSongName</h2>
-                <a href="/Song/Details/@Model.TopSongs.FirstOrDefault()?.PK_sSongId">PLAY NOW</a>
+                <h2>@Model.LatestTrends[0]?.sSongName</h2>
+                <a
+                   href="@Url.Action("Details", "Song", new { id = @Model.LatestTrends[0]?.PK_sSongId })"
+                 >PLAY NOW</a>
               </span>
               <span class="img">
-                <img src="@Model.TopSongs.FirstOrDefault()?.sImageUrl" alt="@Model.TopSongs.FirstOrDefault()?.sSongName">
+                <img src="@Model.LatestTrends[0]?.sImageUrl" alt="@Model.LatestTrends[0]?.sSongName">
               </span>
               <span class="bg_filt"></span>
             </div>
           </span>
+
+          <!-- Trending New Card -->
           <span>
             <div class="ll_card">
               <span class="txt">
                 <h5>Trending New</h5>
-                <h2>@Model.LatestTrends.FirstOrDefault()?.sSongName</h2>
-                <a href="/Song/Details/@Model.LatestTrends.FirstOrDefault()?.PK_sSongId">PLAY NOW</a>
+                <h2>@Model.LatestTrends[1]?.sSongName</h2>
+                <a   href="@Url.Action("Details", "Song", new { id = @Model.LatestTrends[1]?.PK_sSongId })">PLAY NOW</a>
               </span>
               <span class="img">
-                <img src="@Model.LatestTrends.FirstOrDefault()?.sImageUrl" alt="@Model.LatestTrends.FirstOrDefault()?.sSongName">
+                <img src="@Model.LatestTrends[1]?.sImageUrl" alt="@Model.LatestTrends[1]?.sSongName">
               </span>
               <span class="bg_filt"></span>
             </div>
