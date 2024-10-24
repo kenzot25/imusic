@@ -62,10 +62,10 @@ header {
 }
 
 .header {
-    display: grid;
-    grid-template-columns: 150px auto;
+    display: flex;
     align-items: center;
     height: 80px;
+    justify-content:space-between;
 }
 
 .navigation ul {
