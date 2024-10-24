@@ -2,6 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
+<header class="navbar">
+    <div class="navbar-left">
+        <a href="/" class="navbar-brand">IMusic</a>
+    </div>
+    <div class="navbar-center">
+        <input type="text" class="search-input" placeholder="Search...">
+    </div>
+    <div class="navbar-right">
+        <div class="user-icon">
+            <img src="~/images/user-icon.png" alt="User Profile" class="user-icon-img">
+            <div class="dropdown-content">
+                <a href="#">Profile</a>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+<link rel="stylesheet" href="@Url.Content("~/css/Index.css")">
+
 <div class="hero-section">
     <div class="container text-center">
         <h1 class="display-3">Discover Your Sound</h1>
