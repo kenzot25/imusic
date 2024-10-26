@@ -28,6 +28,7 @@
     <Folder Include="wwwroot\css\home\" />
     <Folder Include="wwwroot\Assets\" />
     <Folder Include="wwwroot\css\song-detail\" />
+    <Folder Include="wwwroot\css\song-create\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
@@ -74,6 +75,7 @@
     <Content Remove="wwwroot\Assets\twitter.svg" />
     <Content Remove="wwwroot\Assets\" />
     <Content Remove="wwwroot\css\song-detail\" />
+    <Content Remove="wwwroot\css\song-create\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\Assets\all-devices.svg" />

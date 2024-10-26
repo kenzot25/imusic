@@ -4,8 +4,8 @@
     ViewData["Title"] = "Upload Song";
 }
 
-<div class="mt-4">
-    <h2 class="page-title">Upload Song</h2>
+<div class="main-container">
+    <h1 class="page-title">Upload Song</h1>
 
     @if (ViewBag.Error != null)
     {
@@ -29,6 +29,7 @@
                 </select>
                 <span asp-validation-for="FK_sGenreId" class="text-danger"></span>
             </div>
+
             <div class="mb-4">
                 <label for="file" class="form-label">Upload Song File</label>
                 <input type="file" name="file" accept="audio/*" required class="form-control form-control-lg" />
@@ -47,6 +48,8 @@
     </div>
 
 </div>
+
+<link rel="stylesheet" href="@Url.Content("~/css/song-create/main.css")">
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

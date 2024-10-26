@@ -2,19 +2,6 @@
     .container {
         width: 970px;
     }
-
-    .Everywhere .platform_name,
-    .Everywhere .platform_link {
-        display: block;
-    }
-
-    .top-solution-inner br {
-        display: none;
-    }
-
-    .premium-head .container {
-        padding: 72px 15px;
-    }
 }
 
 @media screen and (max-width: 992px) {
@@ -144,19 +131,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .Everywhere .platform_name, .Everywhere .platform_link {
-        display: flex;
-        flex-direction: column;
-        padding-inline-start: 0px;
-    }
-
-        .Everywhere .platform_name li:not(:last-child)::after,
-        .Everywhere .platform_link li:not(:last-child)::after {
-            content: none;
-        }
-
-  
-
     .home_cards {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
@@ -190,23 +164,9 @@
 }
 
 @media screen and (max-width: 576px) {
-    .phoneNtablet h3 {
-        font-size: 28px;
-        line-height: 36px;
-    }
-
-    .Everywhere h3 {
-        font-size: 28px;
-        line-height: 36px;
-    }
-
     .Search h1 {
         font-size: 36px;
         line-height: 48px;
-    }
-
-    .premium-head h1 {
-        font-size: 42px;
     }
 
     .title-2 {
@@ -301,3 +261,4 @@
             padding: 8px 40px;
             font-size: 18px;
         }
+}
