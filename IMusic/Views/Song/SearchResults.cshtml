@@ -1,0 +1,48 @@
+﻿@model IEnumerable<IMusic.Models.SongModel>
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/search-results.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - IMusic</title>
+    <link rel="icon" href="https://www.scdn.co/i/_global/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<div class="search-results-page">
+    <h1>Search Results</h1>
+    <h3>@Model.Count() result@(Model.Count() != 1 ? "s" : "") found</h3>
+
+    <div class="results-list">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var song in Model)
+            {
+                <div class="result-item">
+                    <div class="song-thumbnail">
+                        <img src="@song.sImageUrl" alt="@song.sSongName" />
+                    </div>
+                    <div class="song-info">
+                        <h4>
+                            <a href="@Url.Action("Details", "Song", new { id = song.PK_sSongId })">@song.sSongName</a>
+                        </h4>
+                        <p>@song.User?.sHoTen</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No results found.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // You can add any specific JavaScript functionalities here
+    </script>
+}

@@ -22,19 +22,21 @@
     <Folder Include="RepositoryInterface\" />
     <Folder Include="Env\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Views\Song\" />
     <Folder Include="Repository\" />
     <Folder Include="Services\" />
     <Folder Include="wwwroot\css\home\" />
     <Folder Include="wwwroot\Assets\" />
     <Folder Include="wwwroot\css\song-detail\" />
     <Folder Include="wwwroot\css\song-create\" />
-    <Folder Include="wwwroot\css\song\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.35" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.35" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.35">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Npgsql" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.35">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

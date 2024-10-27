@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,11 +25,16 @@
         <span class="logo">
           <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IMusic</a>
         </span>
-           @if (ViewContext.RouteData.Values["controller"].ToString() == "Home" || ViewContext.RouteData.Values["controller"].ToString() == "Song" && ViewContext.RouteData.Values["action"].ToString() == "Index")
-              {
-          <div class="navbar-center">
-            <input type="text" class="search-input" placeholder="Search...">
-          </div>
+           @if (ViewContext.RouteData.Values["controller"].ToString() == "Home" || 
+                (ViewContext.RouteData.Values["controller"].ToString() == "Song" && 
+                (ViewContext.RouteData.Values["action"].ToString() == "Index" || 
+                 ViewContext.RouteData.Values["action"].ToString() == "SearchResults")))
+            {
+           <div class="navbar-center">
+                <form id="searchForm" action="/Song/SearchResults" method="get">
+                    <input type="text" name="query" class="search-input" placeholder="Search..." />
+                </form>
+            </div>
         }
 
         <nav class="navigation">
@@ -83,6 +88,24 @@
   <script src="~/js/site.js" asp-append-version="true"></script>
   @await RenderSectionAsync("Scripts", required: false)
     @await Html.PartialAsync("_PlayerPartial")
+        <script>
+            window.onload = function() {
+                const queryInput = document.querySelector('.search-input'); 
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('query');
+                if (query) {
+                    queryInput.value = query;
+                }
+            };
+
+            document.querySelector(".search-input").addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault(); 
+                    document.getElementById("searchForm").submit(); 
+                }
+            });
+        </script>
+
 </body>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </html>

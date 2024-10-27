@@ -117,6 +117,16 @@ namespace IMusic.Controllers
 
             return View(song);
         }
+        public async Task<IActionResult> SearchResults(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return View(new List<SongModel>()); 
+            }
+
+            var songs = await _songRepository.SearchSongsAsync(query);
+            return View(songs);
+        }
 
     }
 }
