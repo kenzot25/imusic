@@ -29,6 +29,7 @@
     <Folder Include="wwwroot\Assets\" />
     <Folder Include="wwwroot\css\song-detail\" />
     <Folder Include="wwwroot\css\song-create\" />
+    <Folder Include="wwwroot\css\song\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
@@ -63,6 +64,7 @@
     <Content Remove="wwwroot\Assets\" />
     <Content Remove="wwwroot\css\song-detail\" />
     <Content Remove="wwwroot\css\song-create\" />
+    <Content Remove="wwwroot\css\song\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\Assets\all-devices.svg" />
