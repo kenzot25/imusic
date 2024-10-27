@@ -11,5 +11,6 @@ namespace IMusic.Repositories
         Task<List<GenreModel>> GetGenresAsync();
         Task<SongModel> GetSongByIdAsync(string songId);
         List<SongModel> GetRelatedSongsByGenre(string genreId, string excludeSongId);
+        Task<List<SongModel>> SearchSongsAsync(string query);
     }
 }

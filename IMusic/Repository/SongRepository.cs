@@ -1,6 +1,7 @@
 ﻿using IMusic.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IMusic.Repositories
@@ -46,6 +47,14 @@ namespace IMusic.Repositories
                 .Include(s => s.Genre) 
                 .Include(s => s.User)
                 .ToList();
+        }
+        public async Task<List<SongModel>> SearchSongsAsync(string query)
+        {
+            return await _context.Songs
+                .Where(s => s.sSongName.Contains(query) || s.User.UserName.Contains(query))
+                .Include(s => s.Genre)
+                .Include(s => s.User)
+                .ToListAsync();
         }
     }
 }
