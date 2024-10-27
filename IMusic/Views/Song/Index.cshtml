@@ -1,26 +1,51 @@
 ﻿@model IEnumerable<IMusic.Models.SongModel>
 
-<h1>@ViewData["Title"]</h1> <!-- Display title -->
-<ul>
-    @if (Model != null && Model.Any()) // Check if the model is not null or empty
-    {
-        foreach (var song in Model) // Iterate through each song
-        {
-            <li>
-                @song.sSongName - @song.Genre?.sGenre <!-- Safely access Genre -->
-                <button class="play-button" onclick="playSong('@song.sSongPath', '@song.sSongName', '@song.Genre?.sGenre')">Play</button>
-            </li>
-        }
-    }
-    else
-    {
-        <li>No songs available.</li>
- <!-- Handle case with no songs -->
-    }
-</ul>
+<div class="hm_gradient-1"></div>
+<div class="hm_gradient-2"></div>
+<div class="main-container">
+    <div class="all-songs">
+        <h3>All Songs</h3>
+        <ul class="song-list">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var song in Model)
+                {
+                    <li class="music-card">
+                        <div class="music-cover-container">
+                            <img src="@song.sImageUrl" alt="" class="music-cover">
+                        </div>
+                        <div class="music-info">
+                            <h4>@song.sSongName</h4>
+                            <p>@song.User.sHoTen</p>
+                        </div>
+                        <div class="music-actions">
+                            <button class="play-pause-btn" id="play-pause-btn-@song.PK_sSongId" onclick="playSong('@song.PK_sSongId', '@song.sSongPath', '@song.sSongName', '@song.FK_sGenreId', this.id)">
+                                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play">
+                                    <path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' />
+                                </svg>
+                            </button>
+                            <a href="@song.sSongPath" download>
+                                <button class="download-btn" id="download-btn-@song.PK_sSongId">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                                        <path d="M480 732 274 526l57-57 109 109V256h80v322l109-109 57 57-206 206ZM200 896v-80h560v80H200Z" />
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                        <audio id="audio-player-@song.PK_sSongId" src="@song.sSongPath"></audio>
+                    </li>
+                }
+            }
+            else
+            {
+                <li>No songs available.</li>
+            }
+        </ul>
+    </div>
+</div>
 
 <!-- Song Player Control Bar -->
-<div id="song-player" class="song-player">
+<div id="song-player" class="song-player" style="display: none;">
     <div class="player-info">
         <div id="current-song-name" class="song-name"></div>
         <div id="current-song-genre" class="song-genre"></div>
@@ -30,31 +55,89 @@
     </audio>
 </div>
 
-<script>let currentAudio = null; // Store the currently playing audio element
+<!-- Hidden input to track the currently playing song ID -->
+<input type="hidden" id="current-song-id" value="">
 
-    function playSong(songPath, songName, songGenre) {
-        // Get the audio player and source elements
-        const audioPlayer = document.getElementById('audio-player');
-        const audioSource = document.getElementById('audio-source');
-        const songPlayerBar = document.getElementById('song-player');
-        const currentSongName = document.getElementById('current-song-name');
-        const currentSongGenre = document.getElementById('current-song-genre');
+<link rel="stylesheet" href="@Url.Content("~/css/song/main.css")">
 
-        // If there is already an audio playing, pause it
-        if (currentAudio && !currentAudio.paused) {
-            currentAudio.pause();
+@section Scripts {
+    <script>var currentAudio = null; // Store the currently playing audio element
+        var currentBtn = null; // Store the currently active button
+
+        function playSong(songId, songPath, songName, songGenre, btnId) {
+            const audioPlayer = document.getElementById('audio-player');
+            const audioSource = document.getElementById('audio-source');
+            const songPlayerBar = document.getElementById('song-player');
+            const currentSongName = document.getElementById('current-song-name');
+            const currentSongGenre = document.getElementById('current-song-genre');
+            const playPauseBtn = document.getElementById(btnId);
+            const currentSongIdInput = document.getElementById('current-song-id');
+
+            // Check if the clicked song is the same as the currently playing one
+            if (currentAudio && currentSongIdInput.value === songId) {
+                currentAudio.pause();
+                playPauseBtn.classList.remove('playing');
+                playPauseBtn.innerHTML = getPlayIconSVG();
+                currentAudio = null;
+                currentSongIdInput.value = ""; // Reset the current song ID
+                return;
+            }
+
+            // If a different song is playing, pause it and reset its button
+            if (currentAudio) {
+                console.log("Stopping the currently playing song.");
+                currentAudio.pause();
+                if (currentBtn) {
+                    currentBtn.classList.remove('playing');
+                    currentBtn.innerHTML = getPlayIconSVG(); // Set to play icon for previous song
+                }
+            }
+
+            // Update the audio source and play the new song
+            audioSource.src = songPath;
+
+            // Load and play the new song
+            audioPlayer.load(); // Load the new song
+            audioPlayer.play(); // Start playing
+
+            // Set the new current audio and song ID
+            currentAudio = audioPlayer;
+            currentSongIdInput.value = songId; // Set the current song ID
+
+            // Update the song name and genre, and show the player bar
+            currentSongName.textContent = songName;
+            currentSongGenre.textContent = songGenre || "Unknown Genre"; // Fallback if no genre
+            songPlayerBar.style.display = 'flex';
+
+            // Update the play/pause button UI
+            currentBtn = playPauseBtn; // Set current button to the new one
+            playPauseBtn.classList.add('playing');
+            playPauseBtn.innerHTML = getPauseIconSVG(); // Set to pause icon
+
+            // Optional: Handle audio player ending
+            audioPlayer.addEventListener('ended', () => {
+                currentAudio = null;
+                currentSongIdInput.value = ""; // Reset the current song ID
+                if (currentBtn) {
+                    currentBtn.classList.remove('playing');
+                    currentBtn.innerHTML = getPlayIconSVG(); // Reset to play icon
+                }
+            });
         }
 
-        // Update the audio source and play the new song
-        audioSource.src = songPath;
-        audioPlayer.load(); // Load the new song
-        audioPlayer.play(); // Start playing
+        // Function to get play icon SVG
+        function getPlayIconSVG() {
+            return `
+                <svg class="play-icon" fill="#000000" width="800px" height="800px" viewBox="-4 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-play">
+                    <path d='M13.82 9.523a.976.976 0 0 0-.324-1.363L3.574 2.128a1.031 1.031 0 0 0-.535-.149c-.56 0-1.013.443-1.013.99V15.03c0 .185.053.366.153.523.296.464.92.606 1.395.317l9.922-6.031c.131-.08.243-.189.325-.317zm.746 1.997l-9.921 6.031c-1.425.867-3.3.44-4.186-.951A2.918 2.918 0 0 1 0 15.03V2.97C0 1.329 1.36 0 3.04 0c.567 0 1.123.155 1.605.448l9.921 6.032c1.425.866 1.862 2.696.975 4.088-.246.386-.58.712-.975.952z' />
+                </svg>`;
+        }
 
-        // Set the new current audio
-        currentAudio = audioPlayer;
-
-        // Update the song name and genre, and show the player bar
-        currentSongName.textContent = songName;
-        currentSongGenre.textContent = songGenre || "Unknown Genre"; // Fallback if no genre
-        songPlayerBar.style.display = 'flex';
-    }</script>
+        // Function to get pause icon SVG
+        function getPauseIconSVG() {
+            return `
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-pause">
+                    <path d="M6 19H9V5H6V19ZM15 19H18V5H15V19Z" />
+                </svg>`;
+        }</script>
+}

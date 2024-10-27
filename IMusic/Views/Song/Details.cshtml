@@ -65,16 +65,8 @@
         <div class="track-details">
             <h4 id="track-title">@Model.sSongName</h4>
             <p id="track-author">@Model.User.sHoTen</p>
-            @*<div class="track-controls">
-                <button class="btn btn-prev">Prev</button>
-                <button class="btn btn-play-pause">Play/Pause</button>
-                <button class="btn btn-next">Next</button>
-            </div>*@
-            <div class="trackbar-container">
-                <input type="range" id="song-progress" min="0" max="100" value="0" class="trackbar">
-            </div>
         </div>
-        <audio id="mainSongPlayer" controls autoplay>
+        <audio id="mainSongPlayer" controls autoplay style="width: 100%;">
             <source src="@Model.sSongPath" type="audio/mpeg" />
             Your browser does not support the audio element.
         </audio>
